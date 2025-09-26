@@ -3,12 +3,12 @@
 /* Read more: https://bit.ly/BlynkInject */
 
 #include "DHT.h"
-#define DHTPIN 23  //pin DHT 23
+#define DHTPIN ___  //Add DHT pin
 #define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
-#define LDR_Pin 34
-#define Buzzer_Pin 18
+#define LDR_Pin ___ //Add LDR pin
+#define Buzzer_Pin ___ //Add buzzer pin
 #define L_LED 16
 #define R_LED 17
 
@@ -46,7 +46,7 @@ void setup()
 BLYNK_WRITE(V3) {
   sw_led = param.asInt();
 }
-BLYNK_WRITE(V4) {
+BLYNK_WRITE(___) {  //Add virtual pin
   sw_buzzer = param.asInt();
 }
 
@@ -56,7 +56,7 @@ void loop() {
   ldr = map(LDR_value, 0, 4095, 0, 500);
   Serial.print("LDR_value = "); 
   Serial.println(ldr);
-  Blynk.virtualWrite(V0, ldr);
+  Blynk.virtualWrite(___, ldr); //Add virtual pin
 
   ////// รับค่า  Sensor DHT
   humi = dht.readHumidity();     //รับค่าความชื้น
@@ -65,8 +65,8 @@ void loop() {
   Serial.println(humi);
   Serial.print("Temperature := "); 
   Serial.println(temp);
-  Blynk.virtualWrite(V1, temp);
-  Blynk.virtualWrite(V2, humi);
+  Blynk.virtualWrite(___, temp); //Add virtual pin
+  Blynk.virtualWrite(___, humi); //Add virtual pin
   
   if (sw_buzzer == 1) {
     digitalWrite(Buzzer_Pin, HIGH);
